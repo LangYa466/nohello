@@ -1,0 +1,77 @@
+---
+export interface Props {
+  lang?: 'zh' | 'en';
+  title?: string;
+}
+const { lang = 'zh', title = 'NoHello' } = Astro.props as Props;
+import '../styles/global.css';
+import { Icon } from 'astro-icon/components';
+import SiteFooter from '../components/SiteFooter.astro';
+---
+<!DOCTYPE html>
+<html lang={lang} class="min-h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={lang === 'zh' ? '请不要只发“你好”，请在问候后直接说出你的问题。支持暗色/亮色模式与中英切换。' : 'Please don\'t just say “hello”. Ask your question directly after greeting. Supports dark/light and EN/ZH.'} />
+    <script>
+      // Set initial theme before paint
+      (() => {
+        try {
+          const key = 'theme';
+          const stored = localStorage.getItem(key);
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const theme = stored || (prefersDark ? 'dark' : 'light');
+          if (theme === 'dark') document.documentElement.classList.add('dark');
+        } catch {}
+      })();
+    </script>
+  </head>
+  <body class="min-h-full">
+    <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-slate-900/50 border-b border-slate-200/60 dark:border-slate-800/60">
+      <div class="container-page py-3 flex items-center gap-3 justify-between">
+        <a href={lang === 'zh' ? '/' : '/en'} class="flex items-center gap-3 no-underline">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand-600 text-white shadow-soft">
+            <Icon name="lucide:message-circle" class="h-5 w-5" />
+          </span>
+          <span class="font-semibold text-lg">NoHello</span>
+        </a>
+        <nav class="flex items-center gap-1">
+          <a class="btn-ghost" href={lang === 'zh' ? '/en' : '/'} aria-label={lang === 'zh' ? 'Switch to English' : '切换到中文'}>
+            <Icon name="lucide:languages" class="h-5 w-5" />
+            <span class="sr-only">{lang === 'zh' ? 'EN' : 'ZH'}</span>
+          </a>
+          <button id="theme-toggle" class="btn-ghost" type="button" aria-label={lang === 'zh' ? '切换主题' : 'Toggle theme'}>
+            <Icon name="lucide:moon" class="h-5 w-5 inline-block dark:hidden" />
+            <Icon name="lucide:sun" class="h-5 w-5 hidden dark:inline-block" />
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container-page py-10">
+      <slot />
+    </main>
+
+    <SiteFooter />
+
+    <script>
+      // Toggle theme with persistence
+      (() => {
+        const btn = document.getElementById('theme-toggle');
+        if (!btn) return;
+        const root = document.documentElement;
+        const KEY = 'theme';
+        const set = (v) => {
+          localStorage.setItem(KEY, v);
+          root.classList.toggle('dark', v === 'dark');
+        };
+        btn.addEventListener('click', () => {
+          const next = root.classList.contains('dark') ? 'light' : 'dark';
+          set(next);
+        });
+      })();
+    </script>
+  </body>
+</html>

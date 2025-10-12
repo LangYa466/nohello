@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Icon } from 'astro-icon/components';
+const title = 'NoHello · Ask your question right after greeting';
+---
+<BaseLayout lang="en" title={title}>
+  <section class="text-center">
+    <div class="inline-flex items-center gap-3 px-3 py-1.5 rounded-full glass">
+      <Icon name="lucide:sparkles" class="h-4 w-4 text-brand-600 dark:text-brand-400" />
+      <span class="text-sm text-slate-600 dark:text-slate-300">Polite, efficient communication</span>
+    </div>
+    <h1 class="mt-4 heading flex items-center justify-center gap-3 text-balance leading-tight tracking-normal text-4xl md:text-5xl">
+      Don’t just say “hello” or “you there?”
+    </h1>
+    <p class="mt-3 text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">After your greeting, include your full question and context right away. This helps everyone get to the point faster and avoids back-and-forth.</p>
+  </section>
+
+  <section class="mt-8 grid gap-6 md:grid-cols-2">
+    <div class="card">
+      <h2 class="text-xl font-semibold inline-flex items-center gap-2">
+        <Icon name="lucide:ban" class="h-5 w-5 text-red-500" /> Don’t send
+      </h2>
+      <div class="prose prose-slate dark:prose-invert mt-3">
+        <ul>
+          <li>“Hello”</li>
+          <li>“You there?” / “Got a minute?”</li>
+          <li>“11111”</li>
+          <li>Just a “?” or an emoji</li>
+        </ul>
+      </div>
+      <p class="mt-3 text-sm text-slate-500">These messages force others to wait for your follow-up, creating delays.</p>
+    </div>
+
+    <div class="card">
+      <h2 class="text-xl font-semibold inline-flex items-center gap-2">
+        <Icon name="lucide:check-circle-2" class="h-5 w-5 text-emerald-500" /> Do send
+      </h2>
+      <ul class="mt-3 space-y-3 text-slate-700 dark:text-slate-200">
+        <li class="flex items-start gap-2">
+          <span class="tag mt-0.5"><Icon name="lucide:lightbulb" class="h-3.5 w-3.5 mr-1" /> Example</span>
+          <div>
+            Hi! While deploying project X I get this error: <code class="px-1 py-0.5 bg-slate-100 dark:bg-slate-800 rounded">Error: Z</code>.
+            I tried A/B (clearing cache, reinstalling deps) but it didn’t help. Any ideas what to check next?
+          </div>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="tag mt-0.5"><Icon name="lucide:lightbulb" class="h-3.5 w-3.5 mr-1" /> Example</span>
+          <div>
+            Good afternoon! I need to reduce API latency from 800ms to 200ms. The bottleneck is DB queries; indexes didn’t help much. Any optimization tips?
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="mt-8 grid gap-6 md:grid-cols-2">
+    <div class="card">
+      <h2 class="text-xl font-semibold inline-flex items-center gap-2">
+        <Icon name="lucide:info" class="h-5 w-5 text-blue-500" /> Why?
+      </h2>
+      <ul class="mt-3 list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-300">
+        <li>Eliminates “you there?” confirmation ping-pong and speeds up replies.</li>
+        <li>Critical for async channels; others can start helping even if you’re offline.</li>
+        <li>Good context invites more people to jump in and provide accurate help.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2 class="text-xl font-semibold inline-flex items-center gap-2">
+        <Icon name="lucide:sparkles" class="h-5 w-5 text-amber-500" /> The rule of thumb
+      </h2>
+      <p class="mt-3">Greet, then immediately share your question, context, expected result, things you’ve tried, and any relevant screenshots/logs.</p>
+    </div>
+  </section>
+</BaseLayout>

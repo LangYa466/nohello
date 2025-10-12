@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Icon } from 'astro-icon/components';
+const title = 'NoHello · 请在问候后直接说出你的问题';
+---
+<BaseLayout lang="zh" title={title}>
+  <section class="text-center">
+    <div class="inline-flex items-center gap-3 px-3 py-1.5 rounded-full glass">
+      <Icon name="lucide:sparkles" class="h-4 w-4 text-brand-600 dark:text-brand-400" />
+      <span class="text-sm text-slate-600 dark:text-slate-300">优雅高效的沟通礼仪</span>
+    </div>
+    <h1 class="mt-4 heading text-balance leading-tight tracking-normal text-4xl md:text-5xl">
+      不要只说“你好”或“在吗”
+    </h1>
+    <p class="mt-3 text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">请在问候语后，直接附上你的问题或上下文。这样大家可以更快进入主题，减少来回确认的等待。</p>
+  </section>
+
+  <section class="mt-8 grid gap-6 md:grid-cols-2">
+    <div class="card">
+      <h2 class="text-xl font-semibold inline-flex items-center gap-2">
+        <Icon name="lucide:ban" class="h-5 w-5 text-red-500" /> 不要这样发
+      </h2>
+      <div class="prose prose-slate dark:prose-invert mt-3">
+        <ul>
+          <li>“你好”</li>
+          <li>“在吗？” / “有空吗？”</li>
+          <li>“11111”</li>
+          <li>只发一个“？”或表情</li>
+        </ul>
+      </div>
+      <p class="mt-3 text-sm text-slate-500">这些消息让对方只能等待你的后续说明，徒增来回、浪费时间。</p>
+    </div>
+
+    <div class="card">
+      <h2 class="text-xl font-semibold inline-flex items-center gap-2">
+        <Icon name="lucide:check-circle-2" class="h-5 w-5 text-emerald-500" /> 推荐这样发
+      </h2>
+      <ul class="mt-3 space-y-3 text-slate-700 dark:text-slate-200">
+        <li class="flex items-start gap-2">
+          <span class="tag mt-0.5"><Icon name="lucide:lightbulb" class="h-3.5 w-3.5 mr-1" /> 示例</span>
+          <div class="flex-1 min-w-0">
+            你好，我在部署项目 X 时遇到 Y 错误：<code class="px-1 py-0.5 bg-slate-100 dark:bg-slate-800 rounded">Error: Z</code>。
+            我已尝试 A/B（清缓存、重装依赖），仍无效。请问下一步该怎么排查？
+          </div>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="tag mt-0.5"><Icon name="lucide:lightbulb" class="h-3.5 w-3.5 mr-1" /> 示例</span>
+          <div class="flex-1 min-w-0">
+            下午好，我需要把接口响应时间从 800ms 降到 200ms。当前瓶颈在数据库查询，已建索引但效果不明显。有没有建议的优化方向？
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="mt-8 grid gap-6 md:grid-cols-2">
+    <div class="card">
+      <h2 class="text-xl font-semibold inline-flex items-center gap-2">
+        <Icon name="lucide:info" class="h-5 w-5 text-blue-500" /> 为什么？
+      </h2>
+      <ul class="mt-3 list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-300">
+        <li>减少“在吗/有空吗”等确认往返，加快响应速度。</li>
+        <li>异步场景（IM、邮件、工单）尤其重要，对方不在线也能直接着手分析。</li>
+        <li>良好的上下文能让更多人参与解答，提升沟通效率。</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2 class="text-xl font-semibold inline-flex items-center gap-2">
+        <Icon name="lucide:sparkles" class="h-5 w-5 text-amber-500" /> 一句话准则
+      </h2>
+      <p class="mt-3">先问候，再直接说出你的问题与上下文、预期结果、已尝试方案和相关截图/日志。</p>
+    </div>
+  </section>
+</BaseLayout>
